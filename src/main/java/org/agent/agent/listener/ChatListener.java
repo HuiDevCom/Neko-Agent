@@ -29,6 +29,8 @@ public class ChatListener implements Listener {
     private final LogManager logManager;
     private ServerDiaryService diaryService; // set after construct
 
+    private final String agentName;
+
     // 触发模式：contains / prefix / exact
     private String triggerMode;
     private String triggerPrefix;
@@ -53,6 +55,7 @@ public class ChatListener implements Listener {
         this.logManager = logManager;
         this.triggerMode = plugin.getConfig().getString("agent.trigger_mode", "contains");
         this.triggerPrefix = plugin.getConfig().getString("agent.trigger_prefix", "Agent");
+        this.agentName = plugin.getConfig().getString("agent.name", "Agent");
     }
 
     /** 重新加载配置 */
@@ -97,7 +100,7 @@ public class ChatListener implements Listener {
 
         // 限流检测
         if (!rateLimiter.allow(playerId)) {
-            player.sendMessage("§e" + plugin.getConfig().getString("agent.name", "Agent") + "累了，休息一下喵～");
+            player.sendMessage("§e" + agentName + "累了，休息一下喵～");
             return;
         }
 
@@ -124,7 +127,7 @@ public class ChatListener implements Listener {
                                 Integer fails = failCount.getOrDefault(playerId, 0);
                                 failCount.put(playerId, fails + 1);
                                 if (fails >= 2) {
-                                    player.sendMessage("§e小绘网络不太好，等会儿再找我吧喵...");
+                                    player.sendMessage("§e" + agentName + "网络不太好，等会儿再找我吧喵...");
                                 } else {
                                     player.sendMessage("§e唔…我走神了，能再说一遍吗喵？");
                                 }
@@ -151,7 +154,7 @@ public class ChatListener implements Listener {
                             processAndBroadcast(fPlayer, playerId, userMessage, response, startTime);
 
                         } catch (Throwable e) {
-                            player.sendMessage("§c小绘回复时出了点问题喵...");
+                            player.sendMessage("§c" + agentName + "回复时出了点问题喵...");
                             logManager.logError("ChatListener", "回复处理异常", e);
                         }
                     });
@@ -164,7 +167,7 @@ public class ChatListener implements Listener {
     private void processAndBroadcast(Player player, UUID playerId, String userMessage,
                                      String response, long startTime) {
         if (response == null || response.isEmpty()) {
-            player.sendMessage("§e唔…小绘还是没反应过来喵，可能要再说一次试试…");
+            player.sendMessage("§e唔…" + agentName + "还是没反应过来喵，可能要再说一次试试…");
             return;
         }
         String processed = actionExecutor.processActions(player, response);

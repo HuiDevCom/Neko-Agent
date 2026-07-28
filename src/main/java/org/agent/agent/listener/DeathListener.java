@@ -26,6 +26,7 @@ public class DeathListener implements Listener {
     private final ConversationManager conversationManager;
     private final ActionExecutor actionExecutor;
     private final PlayerMemoryManager memoryManager;
+    private final String agentName;
 
     public DeathListener(JavaPlugin plugin, OpenAIService openAIService,
                          ConversationManager conversationManager,
@@ -36,6 +37,7 @@ public class DeathListener implements Listener {
         this.conversationManager = conversationManager;
         this.actionExecutor = actionExecutor;
         this.memoryManager = memoryManager;
+        this.agentName = plugin.getConfig().getString("agent.name", "Agent");
     }
 
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
@@ -116,10 +118,10 @@ public class DeathListener implements Listener {
                         if (line.isEmpty()) continue;
                         final long delay = i * 10L;
                         if (delay == 0) {
-                            Bukkit.broadcastMessage("§b[小绘] §r" + line);
+                            Bukkit.broadcastMessage("§b[" + agentName + "] §r" + line);
                         } else {
                             Bukkit.getScheduler().runTaskLater(plugin,
-                                    () -> Bukkit.broadcastMessage("§b[小绘] §r" + line), delay);
+                                    () -> Bukkit.broadcastMessage("§b[" + agentName + "] §r" + line), delay);
                         }
                     }
                 });

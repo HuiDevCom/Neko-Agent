@@ -41,6 +41,8 @@ public class AgentCommand implements CommandExecutor, TabCompleter {
     private final ChatListener chatListener;
     private final ServerDiaryService diaryService;
 
+    private final String agentName;
+
     // 命令对话的安全追踪（与 ChatListener 对齐）
     private final Map<UUID, Long> lastTriggerTime = new ConcurrentHashMap<>();
     private final Map<UUID, Integer> failCount = new ConcurrentHashMap<>();
@@ -65,6 +67,7 @@ public class AgentCommand implements CommandExecutor, TabCompleter {
         this.sensitiveFilter = new SensitiveWordFilter(plugin);
         this.chatListener = chatListener;
         this.diaryService = diaryService;
+        this.agentName = plugin.getConfig().getString("agent.name", "Agent");
     }
 
     @Override
@@ -94,11 +97,11 @@ public class AgentCommand implements CommandExecutor, TabCompleter {
                 case "mute" -> handleMute(sender);
                 case "recipe" -> handleRecipe(sender, args);
                 case "logs" -> handleLogs(sender, args);
-            case "diary" -> handleDiary(sender, args);
+                case "diary" -> handleDiary(sender, args);
                 default -> handleChat(sender, args);
             }
         } catch (Throwable e) {
-            sender.sendMessage("§c[小绘] 命令执行出错: " + e.getMessage());
+            sender.sendMessage("§c[" + agentName + "] 命令执行出错: " + e.getMessage());
         }
 
         return true;
@@ -112,11 +115,22 @@ public class AgentCommand implements CommandExecutor, TabCompleter {
         sender.sendMessage("  " + localeManager.format(lang, "help_forget"));
         sender.sendMessage("  " + localeManager.format(lang, "help_memories"));
         sender.sendMessage("  " + localeManager.format(lang, "help_clear"));
+        sender.sendMessage("  " + localeManager.format(lang, "help_loc"));
+        sender.sendMessage("  " + localeManager.format(lang, "help_stats"));
+        sender.sendMessage("  " + localeManager.format(lang, "help_profile"));
+        sender.sendMessage("  " + localeManager.format(lang, "help_project"));
+        sender.sendMessage("  " + localeManager.format(lang, "help_tell"));
+        sender.sendMessage("  " + localeManager.format(lang, "help_mute"));
+        sender.sendMessage("  " + localeManager.format(lang, "help_recipe"));
+        sender.sendMessage("  " + localeManager.format(lang, "help_logs"));
+        sender.sendMessage("  " + localeManager.format(lang, "help_diary"));
         if (sender.hasPermission("agent.admin")) {
             sender.sendMessage("");
             sender.sendMessage("  " + localeManager.format(lang, "admin_help_memories"));
             sender.sendMessage("  " + localeManager.format(lang, "admin_help_reload"));
             sender.sendMessage("  " + localeManager.format(lang, "admin_help_clearall"));
+            sender.sendMessage("  " + localeManager.format(lang, "admin_help_logs"));
+            sender.sendMessage("  " + localeManager.format(lang, "admin_help_diary"));
         }
     }
 
@@ -148,7 +162,7 @@ public class AgentCommand implements CommandExecutor, TabCompleter {
 
         // 4. 限流检测
         if (!rateLimiter.allow(playerId)) {
-            player.sendMessage("§e小绘累了，休息一下喵～");
+            player.sendMessage("§e" + agentName + "累了，休息一下喵～");
             return;
         }
 
@@ -166,7 +180,7 @@ public class AgentCommand implements CommandExecutor, TabCompleter {
                         Integer fails = failCount.getOrDefault(playerId, 0);
                         failCount.put(playerId, fails + 1);
                         if (fails >= 2) {
-                            player.sendMessage("§e小绘网络不太好，等会儿再找我吧喵...");
+                            player.sendMessage("§e" + agentName + "网络不太好，等会儿再找我吧喵...");
                         } else {
                             player.sendMessage("§e唔…我走神了，能再说一遍吗喵？");
                         }
@@ -189,7 +203,7 @@ public class AgentCommand implements CommandExecutor, TabCompleter {
 
                     cmdProcessAndBroadcast(player, playerId, userMessage, fResponse);
                 } catch (Throwable e) {
-                    player.sendMessage("§c小绘回复时出了点问题喵...");
+                    player.sendMessage("§c" + agentName + "回复时出了点问题喵...");
                     logManager.logError("AgentCommand", "命令回复处理异常", e);
                 }
             });
@@ -199,7 +213,7 @@ public class AgentCommand implements CommandExecutor, TabCompleter {
     /** 广播 AI 回复（AgentCommand 和 retry 共用） */
     private void cmdProcessAndBroadcast(Player player, UUID playerId, String userMessage, String response) {
         if (response == null || response.isEmpty()) {
-            player.sendMessage("§e唔…小绘还是没反应过来喵，可能要再说一次试试…");
+            player.sendMessage("§e唔…" + agentName + "还是没反应过来喵，可能要再说一次试试…");
             return;
         }
         String displayName = localeManager.get(localeManager.resolveLang(player), "prefix");
@@ -355,7 +369,7 @@ public class AgentCommand implements CommandExecutor, TabCompleter {
             if (names.isEmpty()) {
                 sender.sendMessage("§e你还没有保存过坐标。使用 /agent loc <名称> 保存当前位置。");
             } else {
-                sender.sendMessage("§b[小绘] §r你保存的坐标：");
+                sender.sendMessage("§b[" + agentName + "] §r你保存的坐标：");
                 for (String name : names) {
                     String info = locationManager.formatLocationInfo(id, name);
                     sender.sendMessage("  §e" + info);
@@ -382,7 +396,7 @@ public class AgentCommand implements CommandExecutor, TabCompleter {
         UUID id = player.getUniqueId();
         int memCount = playerMemoryManager.getMemories(id).size();
         int locCount = locationManager.getLocationNames(id).size();
-        sender.sendMessage("§b=== 小绘与你 §b===");
+        sender.sendMessage("§b=== " + agentName + "与你 §b===");
         sender.sendMessage("  §7记忆条数: §f" + memCount);
         sender.sendMessage("  §7保存坐标: §f" + locCount);
     }
@@ -461,7 +475,7 @@ public class AgentCommand implements CommandExecutor, TabCompleter {
         String projectName = String.join(" ", java.util.Arrays.copyOfRange(args, 1, args.length));
         playerMemoryManager.addMemory(id, MemoryEntry.Type.PROJECT, projectName, 3);
         sender.sendMessage("§a已记录项目：§f" + projectName);
-        sender.sendMessage("§7小绘会记住你在忙这个，下次上线会问进展喵～");
+        sender.sendMessage("§7" + agentName + "会记住你在忙这个，下次上线会问进展喵～");
     }
 
     // ==================== 日志查看 ====================
@@ -539,10 +553,10 @@ public class AgentCommand implements CommandExecutor, TabCompleter {
 
         if (args.length < 2) {
             // 列出最近日记
-            sender.sendMessage("§b=== 小绘日记 ===§r");
+            sender.sendMessage("§b=== " + agentName + "日记 ===§r");
             var dates = diaryService.listDiaryDates();
             if (dates.isEmpty()) {
-                sender.sendMessage("§e还没有日记，等今天过完小绘就会写了喵~");
+                sender.sendMessage("§e还没有日记，等今天过完" + agentName + "就会写了喵~");
             } else {
                 dates.forEach(d -> sender.sendMessage("  §e/agent diary " + d));
                 sender.sendMessage("§7使用 /agent diary <日期> 查看特定日记");
@@ -588,9 +602,9 @@ public class AgentCommand implements CommandExecutor, TabCompleter {
         String senderName = player.getName();
 
         // 转述给目标玩家
-        target.sendMessage("§7[传话] §b" + senderName + " §7托小绘带话给你：§f" + message);
+        target.sendMessage("§7[传话] §b" + senderName + " §7托" + agentName + "带话给你：§f" + message);
         // 给发送者确认
-        sender.sendMessage("§7小绘已经把话带给了 §b" + targetName + "§7。");
+        sender.sendMessage("§7" + agentName + "已经把话带给了 §b" + targetName + "§7。");
     }
 
     // ==================== 静音模式 ====================
@@ -602,10 +616,10 @@ public class AgentCommand implements CommandExecutor, TabCompleter {
         }
         boolean nowMuted = muteManager.toggle(player.getUniqueId());
         if (nowMuted) {
-            sender.sendMessage("§e小绘已进入静音模式，主动提醒已关闭。");
+            sender.sendMessage("§e" + agentName + "已进入静音模式，主动提醒已关闭。");
             sender.sendMessage("§7（再次输入 /agent mute 可恢复）");
         } else {
-            sender.sendMessage("§a小绘已恢复活跃，以后会主动找你聊天啦～");
+            sender.sendMessage("§a" + agentName + "已恢复活跃，以后会主动找你聊天啦～");
         }
     }
 
@@ -625,7 +639,7 @@ public class AgentCommand implements CommandExecutor, TabCompleter {
         sender.sendMessage("§7正在查询 " + itemName + " 的配方喵...");
         List<OpenAIService.ChatMessage> messages = List.of(
                 OpenAIService.ChatMessage.system(
-                        "你是 Minecraft 专家小绘。玩家想知道一个物品的合成配方。"
+                        "你是 Minecraft 专家" + agentName + "。玩家想知道一个物品的合成配方。"
                                 + "请直接告诉配方（材料+摆法），用简单清晰的方式。"
                                 + "只回答 Minecraft 原版内容。"
                                 + "要求：1-2 句话，用换行分隔。"
@@ -670,6 +684,7 @@ public class AgentCommand implements CommandExecutor, TabCompleter {
             completions.add("mute");
             completions.add("recipe");
             completions.add("logs");
+            completions.add("diary");
             if (sender.hasPermission("agent.admin")) {
                 completions.add("reload");
                 completions.add("clearall");
@@ -694,6 +709,21 @@ public class AgentCommand implements CommandExecutor, TabCompleter {
             return Bukkit.getOnlinePlayers().stream()
                     .map(Player::getName)
                     .filter(s -> s.toLowerCase().startsWith(args[1].toLowerCase()))
+                    .toList();
+        }
+        if ("logs".equals(args[0].toLowerCase()) && args.length == 2 && sender.hasPermission("agent.admin")) {
+            return List.of("stats", "cost", "chat", "errors", "player", "search").stream()
+                    .filter(s -> s.startsWith(args[1].toLowerCase()))
+                    .toList();
+        }
+        if ("diary".equals(args[0].toLowerCase()) && args.length == 2) {
+            List<String> completions = new ArrayList<>();
+            completions.add("list");
+            if (diaryService != null) {
+                completions.addAll(diaryService.listDiaryDates());
+            }
+            return completions.stream()
+                    .filter(s -> s.startsWith(args[1].toLowerCase()))
                     .toList();
         }
         return List.of();

@@ -18,6 +18,7 @@ public class ServerDiaryService {
     private final JavaPlugin plugin;
     private final File diaryDir;
     private final SimpleDateFormat dateFmt = new SimpleDateFormat("yyyy-MM-dd");
+    private final String agentName;
 
     // 当日统计
     private volatile String currentDate = dateFmt.format(new Date());
@@ -38,6 +39,7 @@ public class ServerDiaryService {
         this.plugin = plugin;
         this.diaryDir = new File(plugin.getDataFolder(), "diaries");
         if (!diaryDir.exists()) diaryDir.mkdirs();
+        this.agentName = plugin.getConfig().getString("agent.name", "Agent");
     }
 
     public void setOpenAIService(OpenAIService openAIService) { this.openAIService = openAIService; }
@@ -126,7 +128,7 @@ public class ServerDiaryService {
                 OpenAIService.ChatMessage.system(
                         "你是" + plugin.getConfig().getString("server_name", "Minecraft Server") +
                         "服务器的傲娇猫娘「" + plugin.getConfig().getString("agent.name", "Agent") + "」。服务器运行了一整天，" +
-                        "下面是今天的统计数据。请用小绘的语气写一篇短日记（中文，3-6句），" +
+                        "下面是今天的统计数据。请用" + agentName + "的语气写一篇短日记（中文，3-6句），" +
                         "像真的在写日记一样自然。可以吐槽死亡太多、夸夸最活跃的玩家、" +
                         "记一下有趣的事件。语气要亲切、有傲娇感，不要报流水账。" +
                         "禁止在日记里提及分组、类型等元数据。"
@@ -139,7 +141,7 @@ public class ServerDiaryService {
             if (diary == null || diary.isEmpty()) {
                 entry = buildPlainDiary(date, joins, deaths, chats, aiCalls, players, events, peak);
             } else {
-                entry = "══════ " + date + " 小绘日记 ══════\n\n" + diary.trim() + "\n";
+                entry = "══════ " + date + " " + agentName + "日记 ══════\n\n" + diary.trim() + "\n";
             }
             saveDiaryFile(date, entry);
         });
@@ -148,7 +150,7 @@ public class ServerDiaryService {
     private String buildPlainDiary(String date, int joins, int deaths, int chats, int aiCalls,
                                     Set<String> players, Map<String, String> events, int peak) {
         StringBuilder sb = new StringBuilder();
-        sb.append("══════ ").append(date).append(" 小绘日记 ══════\n\n");
+        sb.append("══════ ").append(date).append(" " + agentName + "日记 ══════\n\n");
         sb.append("今天服务器有 ").append(peak).append(" 位冒险者同时在线，一共登录了 ").append(joins).append(" 次喵~\n");
         if (deaths > 0) sb.append("发生了 ").append(deaths).append(" 次死亡，大家要注意安全啊！\n");
         sb.append("玩家们一共聊了 ").append(chats).append(" 句话，叫了我 ").append(aiCalls).append(" 次喵~\n");
@@ -183,7 +185,7 @@ public class ServerDiaryService {
         if (!file.exists()) {
             // 尝试带扩展名
             file = new File(diaryDir, date);
-            if (!file.exists()) return "§e那天小绘没有写日记哦喵~";
+            if (!file.exists()) return "§e那天" + agentName + "没有写日记哦喵~";
         }
         try {
             return new String(java.nio.file.Files.readAllBytes(file.toPath()), StandardCharsets.UTF_8);

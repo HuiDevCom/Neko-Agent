@@ -6,7 +6,7 @@ load: POSTWORLD
 
 commands:
   agent:
-    description: 与小绘 AI Agent 对话
+    description: 与 AI Agent 对话
     usage: /agent <消息>
     aliases: [ai, fh]
 
