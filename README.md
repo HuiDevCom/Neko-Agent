@@ -2,7 +2,7 @@
 
 <p align="center"><a href="README.en.md">English</a> | <a href="README.md">中文</a></p>
 
-# Neko Agent - Minecraft AI 助手插件
+# Neko Agent
 
 基于 OpenAI 兼容 API 的 Minecraft Paper 服务端 AI 助手插件。支持 DeepSeek、OpenAI 等任意兼容接口，玩家可通过聊天或命令与 Neko-Agent 互动，Neko-Agent 具备角色扮演、Minecraft 知识问答、服务器管理操作等能力。
 
