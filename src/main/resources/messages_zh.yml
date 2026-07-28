@@ -1,0 +1,39 @@
+# 简体中文语言包（zh_cn）
+# 占位符：
+#   {0} {1} - 参数，按调用顺序填充
+#   {server_name} - 服务器名称（config.yml 中配置）
+#   {server_online} - 当前在线玩家数
+#   {server_max} - 服务器最大玩家数
+#   {version} - 插件版本
+prefix: "§b[小绘]§r"
+system_prefix: "[小绘系统]"
+error_prefix: "[小绘]"
+empty_welcome: "{0} 上线啦，欢迎来到{server_name}喵~"
+fallback_join: "{0} 上线啦，欢迎来到{server_name}喵~"
+
+# /agent 命令
+help_title: "§e=== 命令帮助 ==="
+help_chat: "§f/agent <消息> §7- 与小绘聊天"
+help_remember: "§f/agent remember <内容> §7- 让小绘记住关于你的事"
+help_forget: "§f/agent forget <编号> §7- 删除一条记忆"
+help_memories: "§f/agent memories §7- 查看小绘记住了你什么"
+help_clear: "§f/agent clear §7- 清除对话历史"
+admin_help_memories: "§f/agent memories <玩家> §7- 查看其他玩家的记忆"
+admin_help_reload: "§f/agent reload §7- 重载配置文件"
+admin_help_clearall: "§f/agent clearall §7- 清除所有玩家的对话历史"
+
+player_only: "§c此命令只能由玩家执行。"
+no_permission: "§c你没有权限执行此命令。"
+reload_done: "§a配置已重载！"
+clearall_done: "§a所有玩家的对话历史已清除！"
+remember_done: "§a已记住：「{0}」"
+forget_invalid: "§c编号无效，请使用 /agent memories 查看编号。"
+forget_not_number: "§c请输入有效的数字编号。"
+forget_done: "§a已忘记：「{0}」"
+memories_empty: "§7还没有关于这个玩家的记忆。"
+memories_empty_hint: "§7使用 §f/agent remember <内容> §7来添加记忆。"
+memories_title: "§e已记住的信息："
+memories_item: "  §f{0}. §7{1}"
+player_not_found: "§c未找到玩家: {0}"
+clear_done: "§a对话历史已清除！"
+send_to: "§7[你 → 小绘] §f{0}"

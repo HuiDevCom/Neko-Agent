@@ -1,0 +1,39 @@
+# English (default fallback) language bundle
+# Placeholders:
+#   {0} {1} - arguments, replaced in call order
+#   {server_name} - server name from config.yml
+#   {server_online} - current online player count
+#   {server_max} - maximum player slots
+#   {version} - plugin version
+prefix: "§b[Xiao Hui]§r"
+system_prefix: "[Xiao Hui]"
+error_prefix: "[Xiao Hui]"
+empty_welcome: "{0} has joined. Welcome to {server_name} meow~"
+fallback_join: "{0} has joined. Welcome to {server_name} meow~"
+
+# /agent command
+help_title: "§e=== Command Help ==="
+help_chat: "§f/agent <message> §7- Chat with Xiao Hui"
+help_remember: "§f/agent remember <text> §7- Tell Xiao Hui something about you"
+help_forget: "§f/agent forget <index> §7- Remove a memory entry"
+help_memories: "§f/agent memories §7- View what Xiao Hui remembers about you"
+help_clear: "§f/agent clear §7- Clear your chat history"
+admin_help_memories: "§f/agent memories <player> §7- View another player's memories"
+admin_help_reload: "§f/agent reload §7- Reload configuration"
+admin_help_clearall: "§f/agent clearall §7- Clear all players' chat history"
+
+player_only: "§cThis command can only be used by players."
+no_permission: "§cYou don't have permission to run this command."
+reload_done: "§aConfiguration reloaded!"
+clearall_done: "§aAll players' chat history has been cleared!"
+remember_done: "§aRemembered: \"{0}\""
+forget_invalid: "§cInvalid index. Use /agent memories to see your list."
+forget_not_number: "§cPlease enter a valid number."
+forget_done: "§aForgot: \"{0}\""
+memories_empty: "§7No memories recorded for this player yet."
+memories_empty_hint: "§7Use §f/agent remember <text> §7to add one."
+memories_title: "§eMemories:"
+memories_item: "  §f{0}. §7{1}"
+player_not_found: "§cPlayer not found: {0}"
+clear_done: "§aChat history cleared!"
+send_to: "§7[You → Xiao Hui] §f{0}"

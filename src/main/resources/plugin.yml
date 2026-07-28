@@ -1,6 +1,16 @@
 name: Agent
 version: '${version}'
-
 main: org.agent.agent.Agent
-api-version: '26.2'
+api-version: '1.21'
 load: POSTWORLD
+
+commands:
+  agent:
+    description: 与小绘 AI Agent 对话
+    usage: /agent <消息>
+    aliases: [ai, fh]
+
+permissions:
+  agent.admin:
+    description: 允许重载配置和清除所有对话历史
+    default: op
