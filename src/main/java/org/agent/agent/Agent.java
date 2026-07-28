@@ -61,7 +61,7 @@ public final class Agent extends JavaPlugin {
         diaryService = new ServerDiaryService(this);
         diaryService.setOpenAIService(openAIService);
         actionExecutor = new ActionExecutor(kimiService);
-        actionExecutor.loadConfig(getConfig().getString("agent.name", "Agent"));
+        actionExecutor.loadConfig(getConfig().getString("agent.name", "Neko-Agent"));
         actionExecutor.setMemoryManager(playerMemoryManager);
         actionExecutor.setLocationManager(locationManager);
         serverStatusService = new ServerStatusService();
@@ -136,7 +136,7 @@ public final class Agent extends JavaPlugin {
         Objects.requireNonNull(getCommand("agent")).setExecutor(agentCommand);
         Objects.requireNonNull(getCommand("agent")).setTabCompleter(agentCommand);
 
-        getLogger().info((getConfig().getString("agent.name", "Agent")) + " Agent 已启动！使用 /agent 或聊天前缀与" + getConfig().getString("agent.name", "Agent") + "对话吧~");
+        getLogger().info((getConfig().getString("agent.name", "Neko-Agent")) + " 已启动！使用 /agent 或聊天前缀与" + getConfig().getString("agent.name", "Neko-Agent") + "对话吧~");
     }
 
     public RateLimiter getRateLimiter() { return rateLimiter; }
@@ -196,7 +196,7 @@ public final class Agent extends JavaPlugin {
 
         // 异步让 AI 生成警告
         final String alertText = alert.toString();
-        String agentName = getConfig().getString("agent.name", "Agent");
+        String agentName = getConfig().getString("agent.name", "Neko-Agent");
         String serverName = getConfig().getString("server_name", "Minecraft Server");
         List<OpenAIService.ChatMessage> msgs = List.of(
             OpenAIService.ChatMessage.system(
@@ -225,16 +225,16 @@ public final class Agent extends JavaPlugin {
         String apiKey = config.getString("openai.api_key", "");
         String baseUrl = config.getString("openai.base_url", "");
 
-        if (apiKey.isEmpty() || apiKey.contains("your-") || apiKey.equals("sk-your-deepseek-key-here")) {
+        if (apiKey.isEmpty() || apiKey.contains("your-") || apiKey.contains("sk-your-")) {
             getLogger().warning("============================================");
             getLogger().warning("【警告】openai.api_key 未配置或使用了占位符！");
-            getLogger().warning("请在 config.yml 中填入你的 DeepSeek API Key");
-            getLogger().warning("否则" + getConfig().getString("agent.name", "Agent") + "将无法调用 AI 回复");
+            getLogger().warning("请在 config.yml 中填入你的 API Key");
+            getLogger().warning("否则" + getConfig().getString("agent.name", "Neko-Agent") + "将无法调用 AI 回复");
             getLogger().warning("============================================");
         }
 
         if (baseUrl.isEmpty()) {
-            getLogger().warning("openai.base_url 未配置，使用默认值 https://api.deepseek.com");
+            getLogger().warning("openai.base_url 未配置，使用默认值");
         }
 
         boolean kimiEnabled = config.getBoolean("kimi.enabled", false);
@@ -264,6 +264,6 @@ public final class Agent extends JavaPlugin {
         if (conversationManager != null) {
             conversationManager.saveAll();
         }
-        getLogger().info((getConfig().getString("agent.name", "Agent")) + " Agent 已关闭，再见~");
+        getLogger().info((getConfig().getString("agent.name", "Neko-Agent")) + " 已关闭，再见~");
     }
 }

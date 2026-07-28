@@ -11,7 +11,7 @@ import java.util.logging.Level;
 
 /**
  * 管理每个玩家的对话上下文历史 —— 持久化到独立 YAML 文件
- * 存储位置：plugins/Agent/histories/<uuid>.yml
+ * 存储位置：plugins/Neko-Agent/histories/<uuid>.yml
  */
 public class ConversationManager {
 
@@ -29,7 +29,7 @@ public class ConversationManager {
     private String systemPrompt;
     private int maxHistory;
 
-    private String agentName = "Agent";
+    private String agentName = "Neko-Agent";
     private String serverName = "Minecraft Server";
 
     public ConversationManager(JavaPlugin plugin, PlayerMemoryManager memoryManager,

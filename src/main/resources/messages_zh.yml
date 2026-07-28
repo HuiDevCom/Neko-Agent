@@ -5,7 +5,7 @@
 #   {server_online} - 当前在线玩家数
 #   {server_max} - 服务器最大玩家数
 #   {version} - 插件版本
-#   {agent_name}  - Agent 名字
+#   {agent_name}  - Neko-Agent 名字（config.agent.name）
 prefix: "§b[{agent_name}]§r"
 system_prefix: "[{agent_name}系统]"
 error_prefix: "[{agent_name}]"

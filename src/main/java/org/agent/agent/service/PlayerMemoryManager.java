@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 
 /**
  * 玩家记忆管理 —— 结构化存储，支持分类/置信度/衰减
- * 存储位置：plugins/Agent/memories/<uuid>.yml
+ * 存储位置：plugins/Neko-Agent/memories/<uuid>.yml
  */
 public class PlayerMemoryManager {
 

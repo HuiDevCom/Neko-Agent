@@ -34,7 +34,7 @@ public class ActionExecutor {
     private Pattern fakeActionPattern;
     private Pattern fabricatedClaimPattern;
 
-    private String agentName = "Agent";
+    private String agentName = "Neko-Agent";
 
     private final KimiSearchService kimiService;
     private PlayerMemoryManager memoryManager;
@@ -45,7 +45,7 @@ public class ActionExecutor {
 
     public ActionExecutor(KimiSearchService kimiService) {
         this.kimiService = kimiService;
-        compilePatterns("Agent");
+        compilePatterns("Neko-Agent");
     }
 
     /**
@@ -78,7 +78,7 @@ public class ActionExecutor {
     }
 
     /**
-     * 处理 AI 回复，提取并执行所有 [小绘:xxx:xxx] 操作标签
+     * 处理 AI 回复，提取并执行所有操作标签
      * 搜索标签会被异步执行，其他标签同步替换后返回
      */
     public String processActions(Player player, String aiResponse) {
@@ -106,9 +106,9 @@ public class ActionExecutor {
         // 裁剪与 [操作完成] 矛盾的文字行
         String finalText = stripContradictoryLines(result.toString());
 
-        // 搜索异步执行，结果以小绘的语气自然发出
-        if (!searchQueries.isEmpty() && Bukkit.getPluginManager().getPlugin("Agent") != null) {
-            var plugin = Bukkit.getPluginManager().getPlugin("Agent");
+        // 搜索异步执行，结果以 Agent 的语气自然发出
+        if (!searchQueries.isEmpty() && Bukkit.getPluginManager().getPlugin("Neko-Agent") != null) {
+            var plugin = Bukkit.getPluginManager().getPlugin("Neko-Agent");
             for (String query : searchQueries) {
                 Bukkit.getScheduler().runTaskAsynchronously(plugin, () -> {
                     String searchResult = kimiService.search(query);

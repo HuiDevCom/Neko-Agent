@@ -1,1 +1,1 @@
-rootProject.name = "Agent"
+rootProject.name = "NekoAgent"

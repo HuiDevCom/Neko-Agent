@@ -14,7 +14,7 @@ import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * 聊天监听器 —— 消息中包含「小绘」即触发对话
+ * 聊天监听器 —— 消息中包含触发词即触发对话
  */
 public class ChatListener implements Listener {
 
@@ -54,14 +54,14 @@ public class ChatListener implements Listener {
         this.rateLimiter = rateLimiter;
         this.logManager = logManager;
         this.triggerMode = plugin.getConfig().getString("agent.trigger_mode", "contains");
-        this.triggerPrefix = plugin.getConfig().getString("agent.trigger_prefix", "Agent");
-        this.agentName = plugin.getConfig().getString("agent.name", "Agent");
+        this.triggerPrefix = plugin.getConfig().getString("agent.trigger_prefix", "Neko-Agent");
+        this.agentName = plugin.getConfig().getString("agent.name", "Neko-Agent");
     }
 
     /** 重新加载配置 */
     public void reloadConfig() {
         this.triggerMode = plugin.getConfig().getString("agent.trigger_mode", "contains");
-        this.triggerPrefix = plugin.getConfig().getString("agent.trigger_prefix", "Agent");
+        this.triggerPrefix = plugin.getConfig().getString("agent.trigger_prefix", "Neko-Agent");
     }
 
     public void setDiaryService(ServerDiaryService ds) { this.diaryService = ds; }

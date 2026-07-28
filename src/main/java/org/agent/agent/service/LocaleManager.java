@@ -149,7 +149,7 @@ public class LocaleManager {
         if (!text.contains("{")) return text; // 快速跳过
         try {
             String serverName = plugin.getConfig().getString("server_name", "Minecraft Server");
-            String agentName = plugin.getConfig().getString("agent.name", "Agent");
+            String agentName = plugin.getConfig().getString("agent.name", "Neko-Agent");
             int online = org.bukkit.Bukkit.getOnlinePlayers().size();
             int max = org.bukkit.Bukkit.getMaxPlayers();
             String version = plugin.getDescription().getVersion();

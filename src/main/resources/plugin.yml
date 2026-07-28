@@ -1,14 +1,15 @@
-name: Agent
+name: Neko-Agent
 version: '${version}'
 main: org.agent.agent.Agent
 api-version: '1.21'
 load: POSTWORLD
+icon: icon.png
 
 commands:
   agent:
-    description: 与 AI Agent 对话
+    description: 与 Neko-Agent 对话
     usage: /agent <消息>
-    aliases: [ai, fh]
+    aliases: [nekoagent, na, neko, agent]
 
 permissions:
   agent.admin:

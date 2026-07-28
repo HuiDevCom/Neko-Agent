@@ -67,7 +67,7 @@ public class AgentCommand implements CommandExecutor, TabCompleter {
         this.sensitiveFilter = new SensitiveWordFilter(plugin);
         this.chatListener = chatListener;
         this.diaryService = diaryService;
-        this.agentName = plugin.getConfig().getString("agent.name", "Agent");
+        this.agentName = plugin.getConfig().getString("agent.name", "Neko-Agent");
     }
 
     @Override

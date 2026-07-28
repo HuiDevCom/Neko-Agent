@@ -1,4 +1,4 @@
-# DeepSeek API 配置（兼容 OpenAI 接口）
+# AI API 配置（兼容 OpenAI 接口）
 openai:
   api_key: ""
   base_url: "https://api.deepseek.com"
@@ -8,7 +8,7 @@ openai:
   timeout_seconds: 60
 
 # Kimi 联网搜索配置（$web_search 内置工具）
-# 启用后小绘可以在需要实时信息时自动调用搜索
+# 启用后 Agent 可以在需要实时信息时自动调用搜索
 kimi:
   enabled: false                          # 是否启用联网搜索（true/false）
   api_key: ""
@@ -28,11 +28,11 @@ filter:
 # 服务器基本信息（用于语言占位符替换）
 server_name: "Minecraft Server"                  # {server_name} 占位符的值
 
-# Agent 行为配置
+# Neko-Agent 行为配置
 agent:
-  # Agent 名字（用于操作标签 [名字:xxx] 和触发前缀）
+  # Neko-Agent 名字（用于操作指令 [名字:xxx] 和触发前缀）
   name: "小绘"
-  # 系统提示词，定义 Agent 的性格和行为
+  # 系统提示词，定义 Neko-Agent 的性格和行为
   system_prompt: >
     你身处一个名为「{server_name}」的 Minecraft 服务器，通过游戏内聊天与玩家互动。
     以下是你的角色设定，请严格遵循：
@@ -127,7 +127,7 @@ agent:
     - 用换行分隔每句话，每条换行就是一条独立消息
     - 不要同时聊多个话题，一次只说一件事
     - 整体最多 2 行（即最多发出 2 条消息）
-  # 聊天触发前缀（玩家在聊天中以此前缀开头即可触发 Agent 对话）
+  # 聊天触发前缀（玩家在聊天中以此前缀开头即可触发对话）
   trigger_prefix: "小绘"
   # 触发模式：contains（包含即触发）/ prefix（开头触发）/ exact（精确匹配）
   trigger_mode: "contains"

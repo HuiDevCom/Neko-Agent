@@ -37,7 +37,7 @@ public class DeathListener implements Listener {
         this.conversationManager = conversationManager;
         this.actionExecutor = actionExecutor;
         this.memoryManager = memoryManager;
-        this.agentName = plugin.getConfig().getString("agent.name", "Agent");
+        this.agentName = plugin.getConfig().getString("agent.name", "Neko-Agent");
     }
 
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
@@ -86,7 +86,7 @@ public class DeathListener implements Listener {
             List<OpenAIService.ChatMessage> messages = List.of(
                     OpenAIService.ChatMessage.system(
                             "你是" + plugin.getConfig().getString("server_name", "Minecraft Server") +
-                            "服务器的傲娇猫娘「" + plugin.getConfig().getString("agent.name", "Agent") + "」。\n"
+                            "服务器的傲娇猫娘「" + plugin.getConfig().getString("agent.name", "Neko-Agent") + "」。\n"
                                     + "现在有玩家死了，请用傲娇的方式吐槽一下，并给出一条实用的生存建议。\n"
                                     + "要求：\n"
                                     + "- 中文，1-2 句短话，用换行分隔，不要写成一整段\n"
