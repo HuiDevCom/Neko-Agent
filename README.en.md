@@ -1,6 +1,6 @@
 <p align="center"><img src="src/main/resources/icon.png" width="128" alt="Neko Agent"></p>
 
-<p align="center"><b>English</b> | <a href="README.md">中文</a></p>
+<p align="center"><b>English</b> | <a href="README.md">简体中文</a></p>
 
 # Neko Agent - Minecraft AI Assistant Plugin
 
