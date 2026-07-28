@@ -2,7 +2,7 @@
 
 <p align="center"><b>English</b> | <a href="README.md">简体中文</a></p>
 
-# Neko Agent - Minecraft AI Assistant Plugin
+# Neko Agent
 
 An AI assistant plugin for Minecraft Paper servers powered by OpenAI-compatible APIs. Supports DeepSeek, OpenAI, and any compatible endpoints. Players can interact with Neko-Agent through chat or commands — Neko-Agent features role-playing, Minecraft knowledge Q&A, server management operations, and more.
 
