@@ -5,18 +5,19 @@
 #   {server_online} - 当前在线玩家数
 #   {server_max} - 服务器最大玩家数
 #   {version} - 插件版本
-prefix: "§b[小绘]§r"
-system_prefix: "[小绘系统]"
-error_prefix: "[小绘]"
+#   {agent_name}  - Agent 名字
+prefix: "§b[{agent_name}]§r"
+system_prefix: "[{agent_name}系统]"
+error_prefix: "[{agent_name}]"
 empty_welcome: "{0} 上线啦，欢迎来到{server_name}喵~"
 fallback_join: "{0} 上线啦，欢迎来到{server_name}喵~"
 
 # /agent 命令
 help_title: "§e=== 命令帮助 ==="
-help_chat: "§f/agent <消息> §7- 与小绘聊天"
-help_remember: "§f/agent remember <内容> §7- 让小绘记住关于你的事"
+help_chat: "§f/agent <消息> §7- 与{agent_name}聊天"
+help_remember: "§f/agent remember <内容> §7- 让{agent_name}记住关于你的事"
 help_forget: "§f/agent forget <编号> §7- 删除一条记忆"
-help_memories: "§f/agent memories §7- 查看小绘记住了你什么"
+help_memories: "§f/agent memories §7- 查看{agent_name}记住了你什么"
 help_clear: "§f/agent clear §7- 清除对话历史"
 admin_help_memories: "§f/agent memories <玩家> §7- 查看其他玩家的记忆"
 admin_help_reload: "§f/agent reload §7- 重载配置文件"
@@ -36,4 +37,4 @@ memories_title: "§e已记住的信息："
 memories_item: "  §f{0}. §7{1}"
 player_not_found: "§c未找到玩家: {0}"
 clear_done: "§a对话历史已清除！"
-send_to: "§7[你 → 小绘] §f{0}"
+send_to: "§7[你 → {agent_name}] §f{0}"

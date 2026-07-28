@@ -56,11 +56,11 @@ public class ConversationManager {
 
     public void loadConfig() {
         var config = plugin.getConfig();
-        this.systemPrompt = config.getString("agent.system_prompt",
-                "你是一个 Minecraft 服务器助手。");
-        this.maxHistory = config.getInt("agent.max_history", 10);
         this.agentName = config.getString("agent.name", "小绘");
         this.serverName = config.getString("server_name", "风绘物语");
+        String raw = config.getString("agent.system_prompt", "你是一个 Minecraft 服务器助手。");
+        this.systemPrompt = raw.replace("{server_name}", serverName).replace("{agent_name}", agentName);
+        this.maxHistory = config.getInt("agent.max_history", 10);
     }
 
     /**

@@ -4,18 +4,18 @@
 #   {server_name} - 伺服器名稱
 #   {server_online} - 目前線上玩家數
 #   {server_max} - 伺服器最大玩家數
-prefix: "§b[小繪]§r"
-system_prefix: "[小繪系統]"
-error_prefix: "[小繪]"
+prefix: "§b[{agent_name}]§r"
+system_prefix: "[{agent_name}系統]"
+error_prefix: "[{agent_name}]"
 empty_welcome: "{0} 上線啦，歡迎來到{server_name}喵～"
 fallback_join: "{0} 上線啦，歡迎來到{server_name}喵～"
 
 # /agent 指令
 help_title: "§e=== 指令說明 ==="
-help_chat: "§f/agent <訊息> §7- 與小繪聊天"
-help_remember: "§f/agent remember <內容> §7- 讓小繪記住關於你的事"
+help_chat: "§f/agent <訊息> §7- 與{agent_name}聊天"
+help_remember: "§f/agent remember <內容> §7- 讓{agent_name}記住關於你的事"
 help_forget: "§f/agent forget <編號> §7- 刪除一條記憶"
-help_memories: "§f/agent memories §7- 查看小繪記住了你什麼"
+help_memories: "§f/agent memories §7- 查看{agent_name}記住了你什麼"
 help_clear: "§f/agent clear §7- 清除對話紀錄"
 admin_help_memories: "§f/agent memories <玩家> §7- 查看其他玩家的記憶"
 admin_help_reload: "§f/agent reload §7- 重載設定檔"
@@ -35,4 +35,4 @@ memories_title: "§e已記住的資訊："
 memories_item: "  §f{0}. §7{1}"
 player_not_found: "§c找不到玩家: {0}"
 clear_done: "§a對話紀錄已清除！"
-send_to: "§7[你 → 小繪] §f{0}"
+send_to: "§7[你 → {agent_name}] §f{0}"

@@ -129,6 +129,7 @@ public class LocaleManager {
      *
      * 可用占位符（在任意语言包中均可使用）：
      *   {server_name}     - 服务器名称（config.server_name）
+     *   {agent_name}      - Agent 名字（config.agent.name）
      *   {server_online}   - 当前在线玩家数
      *   {server_max}      - 服务器最大玩家数
      *   {version}         - 插件版本
@@ -148,11 +149,13 @@ public class LocaleManager {
         if (!text.contains("{")) return text; // 快速跳过
         try {
             String serverName = plugin.getConfig().getString("server_name", "风绘物语");
+            String agentName = plugin.getConfig().getString("agent.name", "小绘");
             int online = org.bukkit.Bukkit.getOnlinePlayers().size();
             int max = org.bukkit.Bukkit.getMaxPlayers();
             String version = plugin.getDescription().getVersion();
 
             text = text.replace("{server_name}", serverName)
+                       .replace("{agent_name}", agentName)
                        .replace("{server_online}", String.valueOf(online))
                        .replace("{server_max}", String.valueOf(max))
                        .replace("{version}", version);

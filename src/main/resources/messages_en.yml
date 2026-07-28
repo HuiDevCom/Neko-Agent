@@ -5,18 +5,18 @@
 #   {server_online} - current online player count
 #   {server_max} - maximum player slots
 #   {version} - plugin version
-prefix: "§b[Xiao Hui]§r"
-system_prefix: "[Xiao Hui]"
-error_prefix: "[Xiao Hui]"
+prefix: "§b[{agent_name}]§r"
+system_prefix: "[{agent_name}]"
+error_prefix: "[{agent_name}]"
 empty_welcome: "{0} has joined. Welcome to {server_name} meow~"
 fallback_join: "{0} has joined. Welcome to {server_name} meow~"
 
 # /agent command
 help_title: "§e=== Command Help ==="
-help_chat: "§f/agent <message> §7- Chat with Xiao Hui"
-help_remember: "§f/agent remember <text> §7- Tell Xiao Hui something about you"
+help_chat: "§f/agent <message> §7- Chat with {agent_name}"
+help_remember: "§f/agent remember <text> §7- Tell {agent_name} something about you"
 help_forget: "§f/agent forget <index> §7- Remove a memory entry"
-help_memories: "§f/agent memories §7- View what Xiao Hui remembers about you"
+help_memories: "§f/agent memories §7- View what {agent_name} remembers about you"
 help_clear: "§f/agent clear §7- Clear your chat history"
 admin_help_memories: "§f/agent memories <player> §7- View another player's memories"
 admin_help_reload: "§f/agent reload §7- Reload configuration"
@@ -36,4 +36,4 @@ memories_title: "§eMemories:"
 memories_item: "  §f{0}. §7{1}"
 player_not_found: "§cPlayer not found: {0}"
 clear_done: "§aChat history cleared!"
-send_to: "§7[You → Xiao Hui] §f{0}"
+send_to: "§7[You → {agent_name}] §f{0}"
