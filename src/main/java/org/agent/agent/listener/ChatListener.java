@@ -31,6 +31,7 @@ public class ChatListener implements Listener {
 
     // 触发模式：contains / prefix / exact
     private String triggerMode;
+    private String triggerPrefix;
     // 玩家最后触发时间（冷却用）
     private final Map<UUID, Long> lastTriggerTime = new ConcurrentHashMap<>();
     // 连续失败计数
@@ -51,11 +52,13 @@ public class ChatListener implements Listener {
         this.rateLimiter = rateLimiter;
         this.logManager = logManager;
         this.triggerMode = plugin.getConfig().getString("agent.trigger_mode", "contains");
+        this.triggerPrefix = plugin.getConfig().getString("agent.trigger_prefix", "Agent");
     }
 
     /** 重新加载配置 */
     public void reloadConfig() {
         this.triggerMode = plugin.getConfig().getString("agent.trigger_mode", "contains");
+        this.triggerPrefix = plugin.getConfig().getString("agent.trigger_prefix", "Agent");
     }
 
     public void setDiaryService(ServerDiaryService ds) { this.diaryService = ds; }
@@ -74,9 +77,9 @@ public class ChatListener implements Listener {
 
         // 触发模式检测
         boolean triggered = switch (triggerMode) {
-            case "prefix" -> message.startsWith("小绘");
-            case "exact" -> message.trim().equals("小绘");
-            default -> message.contains("小绘"); // contains
+            case "prefix" -> message.startsWith(triggerPrefix);
+            case "exact" -> message.trim().equals(triggerPrefix);
+            default -> message.contains(triggerPrefix); // contains
         };
         if (!triggered) return;
 
@@ -94,7 +97,7 @@ public class ChatListener implements Listener {
 
         // 限流检测
         if (!rateLimiter.allow(playerId)) {
-            player.sendMessage("§e" + plugin.getConfig().getString("agent.name", "小绘") + "累了，休息一下喵～");
+            player.sendMessage("§e" + plugin.getConfig().getString("agent.name", "Agent") + "累了，休息一下喵～");
             return;
         }
 

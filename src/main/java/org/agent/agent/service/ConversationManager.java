@@ -29,8 +29,8 @@ public class ConversationManager {
     private String systemPrompt;
     private int maxHistory;
 
-    private String agentName = "小绘";
-    private String serverName = "风绘物语";
+    private String agentName = "Agent";
+    private String serverName = "Minecraft Server";
 
     public ConversationManager(JavaPlugin plugin, PlayerMemoryManager memoryManager,
                                PlayerQueryService queryService, ServerStatusService serverStatusService) {
@@ -56,8 +56,8 @@ public class ConversationManager {
 
     public void loadConfig() {
         var config = plugin.getConfig();
-        this.agentName = config.getString("agent.name", "小绘");
-        this.serverName = config.getString("server_name", "风绘物语");
+        this.agentName = config.getString("agent.name", "Agent");
+        this.serverName = config.getString("server_name", "Minecraft Server");
         String raw = config.getString("agent.system_prompt", "你是一个 Minecraft 服务器助手。");
         this.systemPrompt = raw.replace("{server_name}", serverName).replace("{agent_name}", agentName);
         this.maxHistory = config.getInt("agent.max_history", 10);

@@ -54,8 +54,8 @@ public class AchievementListener implements Listener {
 
                 List<OpenAIService.ChatMessage> messages = List.of(
                         OpenAIService.ChatMessage.system(
-                                "你是" + plugin.getConfig().getString("server_name", "风绘物语") +
-                                "服务器的傲娇猫娘「" + plugin.getConfig().getString("agent.name", "小绘") + "」。"
+                                "你是" + plugin.getConfig().getString("server_name", "Minecraft Server") +
+                                "服务器的傲娇猫娘「" + plugin.getConfig().getString("agent.name", "Agent") + "」。"
                                         + "玩家刚刚完成了一个成就，请用傲娇又开心的语气祝贺他。"
                                         + "要求：中文，1-2 句短话，用换行分隔，不要写成一整段。"
                                         + "如果记忆里有内容可适当结合。"

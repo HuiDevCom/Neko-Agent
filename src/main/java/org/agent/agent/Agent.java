@@ -61,7 +61,7 @@ public final class Agent extends JavaPlugin {
         diaryService = new ServerDiaryService(this);
         diaryService.setOpenAIService(openAIService);
         actionExecutor = new ActionExecutor(kimiService);
-        actionExecutor.loadConfig(getConfig().getString("agent.name", "小绘"));
+        actionExecutor.loadConfig(getConfig().getString("agent.name", "Agent"));
         actionExecutor.setMemoryManager(playerMemoryManager);
         actionExecutor.setLocationManager(locationManager);
         serverStatusService = new ServerStatusService();
@@ -136,7 +136,7 @@ public final class Agent extends JavaPlugin {
         Objects.requireNonNull(getCommand("agent")).setExecutor(agentCommand);
         Objects.requireNonNull(getCommand("agent")).setTabCompleter(agentCommand);
 
-        getLogger().info((getConfig().getString("agent.name", "小绘")) + " Agent 已启动！使用 /agent 或聊天前缀与" + getConfig().getString("agent.name", "小绘") + "对话吧~");
+        getLogger().info((getConfig().getString("agent.name", "Agent")) + " Agent 已启动！使用 /agent 或聊天前缀与" + getConfig().getString("agent.name", "Agent") + "对话吧~");
     }
 
     public RateLimiter getRateLimiter() { return rateLimiter; }
@@ -196,8 +196,8 @@ public final class Agent extends JavaPlugin {
 
         // 异步让 AI 生成警告
         final String alertText = alert.toString();
-        String agentName = getConfig().getString("agent.name", "小绘");
-        String serverName = getConfig().getString("server_name", "风绘物语");
+        String agentName = getConfig().getString("agent.name", "Agent");
+        String serverName = getConfig().getString("server_name", "Minecraft Server");
         List<OpenAIService.ChatMessage> msgs = List.of(
             OpenAIService.ChatMessage.system(
                 "你是" + serverName + "服务器的傲娇猫娘「" + agentName + "」。你发现了服务器的一些异常情况，" +
@@ -229,7 +229,7 @@ public final class Agent extends JavaPlugin {
             getLogger().warning("============================================");
             getLogger().warning("【警告】openai.api_key 未配置或使用了占位符！");
             getLogger().warning("请在 config.yml 中填入你的 DeepSeek API Key");
-            getLogger().warning("否则" + getConfig().getString("agent.name", "小绘") + "将无法调用 AI 回复");
+            getLogger().warning("否则" + getConfig().getString("agent.name", "Agent") + "将无法调用 AI 回复");
             getLogger().warning("============================================");
         }
 
@@ -264,6 +264,6 @@ public final class Agent extends JavaPlugin {
         if (conversationManager != null) {
             conversationManager.saveAll();
         }
-        getLogger().info((getConfig().getString("agent.name", "小绘")) + " Agent 已关闭，再见~");
+        getLogger().info((getConfig().getString("agent.name", "Agent")) + " Agent 已关闭，再见~");
     }
 }

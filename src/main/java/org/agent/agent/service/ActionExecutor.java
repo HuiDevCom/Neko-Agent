@@ -34,7 +34,7 @@ public class ActionExecutor {
     private Pattern fakeActionPattern;
     private Pattern fabricatedClaimPattern;
 
-    private String agentName = "小绘";
+    private String agentName = "Agent";
 
     private final KimiSearchService kimiService;
     private PlayerMemoryManager memoryManager;
@@ -45,7 +45,7 @@ public class ActionExecutor {
 
     public ActionExecutor(KimiSearchService kimiService) {
         this.kimiService = kimiService;
-        compilePatterns("小绘");
+        compilePatterns("Agent");
     }
 
     /**

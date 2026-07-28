@@ -124,8 +124,8 @@ public class ServerDiaryService {
 
         List<OpenAIService.ChatMessage> messages = List.of(
                 OpenAIService.ChatMessage.system(
-                        "你是" + plugin.getConfig().getString("server_name", "风绘物语") +
-                        "服务器的傲娇猫娘「" + plugin.getConfig().getString("agent.name", "小绘") + "」。服务器运行了一整天，" +
+                        "你是" + plugin.getConfig().getString("server_name", "Minecraft Server") +
+                        "服务器的傲娇猫娘「" + plugin.getConfig().getString("agent.name", "Agent") + "」。服务器运行了一整天，" +
                         "下面是今天的统计数据。请用小绘的语气写一篇短日记（中文，3-6句），" +
                         "像真的在写日记一样自然。可以吐槽死亡太多、夸夸最活跃的玩家、" +
                         "记一下有趣的事件。语气要亲切、有傲娇感，不要报流水账。" +

@@ -58,8 +58,8 @@ public class IdleReminderListener implements Listener {
             if (target == null) return;
 
             final Player fTarget = target;
-            String agentName = plugin.getConfig().getString("agent.name", "小绘");
-            String serverName = plugin.getConfig().getString("server_name", "风绘物语");
+            String agentName = plugin.getConfig().getString("agent.name", "Agent");
+            String serverName = plugin.getConfig().getString("server_name", "Minecraft Server");
             List<OpenAIService.ChatMessage> messages = List.of(
                     OpenAIService.ChatMessage.system(
                             "你是" + serverName + "服务器的傲娇猫娘「" + agentName + "」。"

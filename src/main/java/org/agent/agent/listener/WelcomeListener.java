@@ -89,8 +89,8 @@ public class WelcomeListener implements Listener {
                 String timeHint = new java.text.SimpleDateFormat("HH:mm").format(new java.util.Date());
                 String joinDesc = memories.isEmpty() ? "首次" : "再次";
 
-                String serverName = plugin.getConfig().getString("server_name", "风绘物语");
-                String agentName = plugin.getConfig().getString("agent.name", "小绘");
+                String serverName = plugin.getConfig().getString("server_name", "Minecraft Server");
+                String agentName = plugin.getConfig().getString("agent.name", "Agent");
 
                 String systemPrompt = ("你是" + serverName + "服务器的傲娇猫娘「" + agentName + "」。" +
                         "现在玩家 %s 进服了，当前现实时间 %s，你要主动打一句招呼给他/全服。" +
