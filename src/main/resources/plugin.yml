@@ -1,0 +1,6 @@
+name: Agent
+version: '${version}'
+
+main: org.agent.agent.Agent
+api-version: '26.2'
+load: POSTWORLD
