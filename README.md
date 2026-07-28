@@ -190,10 +190,10 @@ logs:
 插件自动检测玩家客户端语言，支持：
 
 - `zh_cn` — 简体中文
-- `zh_tw` / `zh_hk` — 繁体中文
+- `zh_tw` / `zh_hk` — 繁体中文（zh_hant）
 - 其他 — English（回退）
 
-语言文件位于 `plugins/Neko-Agent/` 目录：`messages_zh.yml`、`messages_zh_tw.yml`、`messages_en.yml`。
+语言文件位于 `plugins/Neko-Agent/` 目录：`messages_zh.yml`、`messages_zh_hant.yml`、`messages_en.yml`。
 
 ## 常见问题
 

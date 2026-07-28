@@ -20,7 +20,7 @@ import java.util.logging.Level;
  *
  * 支持的语言包（resources/）：
  *   messages_zh.yml       简体中文
- *   messages_zh_tw.yml    繁體中文
+ *   messages_zh_hant.yml  繁體中文
  *   messages_en.yml       英文（默认回退）
  *
  * 语言匹配规则：
@@ -32,7 +32,7 @@ public class LocaleManager {
 
     public enum Lang {
         ZH("zh", "zh"),
-        ZH_TW("zh_tw", "zh_tw"),
+        ZH_HANT("zh_hant", "zh_hant"),
         EN("en", "en");
 
         public final String code;
@@ -87,7 +87,7 @@ public class LocaleManager {
         if (locale == null) return Lang.EN;
         String l = locale.toLowerCase().replace('-', '_');
         if (l.startsWith("zh_cn")) return Lang.ZH;
-        if (l.startsWith("zh_tw") || l.startsWith("zh_hk") || l.startsWith("zh_mo")) return Lang.ZH_TW;
+        if (l.startsWith("zh_tw") || l.startsWith("zh_hk") || l.startsWith("zh_mo")) return Lang.ZH_HANT;
         return Lang.EN;
     }
 

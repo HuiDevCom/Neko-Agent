@@ -190,10 +190,10 @@ logs:
 The plugin auto-detects player client language and supports:
 
 - `zh_cn` — Simplified Chinese
-- `zh_tw` / `zh_hk` — Traditional Chinese
+- `zh_tw` / `zh_hk` — Traditional Chinese (zh_hant)
 - Others — English (fallback)
 
-Language files are located in `plugins/Neko-Agent/`: `messages_zh.yml`, `messages_zh_tw.yml`, `messages_en.yml`.
+Language files are located in `plugins/Neko-Agent/`: `messages_zh.yml`, `messages_zh_hant.yml`, `messages_en.yml`.
 
 ## FAQ
 

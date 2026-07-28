@@ -69,7 +69,7 @@ public class ConversationManager {
     private String buildLanguageDirective(LocaleManager.Lang lang) {
         return switch (lang) {
             case ZH -> "\n\n[语言] 请使用简体中文回复。";
-            case ZH_TW -> "\n\n[語言] 請使用繁體中文回覆。如果玩家用繁體中文，就用繁體；如果用其他語言，按該語言風格模擬口語化答覆；回复中不要混用语言。";
+            case ZH_HANT -> "\n\n[語言] 請使用繁體中文回覆。如果玩家用繁體中文，就用繁體；如果用其他語言，按該語言風格模擬口語化答覆；回复中不要混用语言。";
             case EN -> "\n\n[Language] Please reply in English.";
         };
     }
