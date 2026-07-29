@@ -35,7 +35,7 @@
 
 ## 安装
 
-1. 从 [Releases](https://github.com/your-repo/agent/releases) 下载最新版 `NekoAgent-*.jar`
+1. 从 [Releases](https://github.com/HuiDevCom/Neko-Agent/releases) 下载最新版 `NekoAgent-*.jar`
 2. 放入服务器的 `plugins/` 目录
 3. 重启服务器（或使用 PlugMan 等插件管理器加载）
 4. 编辑 `plugins/Neko-Agent/config.yml`，填入 API Key
